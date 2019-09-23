@@ -1,3 +1,10 @@
+This was originally a group project which I worked on with Seth Poulin, Aaron Lee and Prashath Cheliyan. 
+
+My role in the project was to handle all interactions with Firebase. As we needed a complicated data structure this provided quite a challege. I learnt a lot over the couse of this project and the code I wrote for it (mostly in the Dashboard.js component) as it required complex problem solving. 
+
+I feel like this project is still not done. We didn't have time to refine our UI design and I was not a active participant in styling as I was tasked with error handling. I forked this repo because I love the work I did on this project and I want to keep working on it to make the best version of the app.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
