@@ -1,3 +1,5 @@
+## About
+
 This was originally a group project which I worked on with Seth Poulin, Aaron Lee and Prashath Cheliyan. 
 
 My role in the project was to handle all interactions with Firebase. As we needed a complicated data structure this provided quite a challege. I learnt a lot over the couse of this project and the code I wrote for it (mostly in the Dashboard.js component) as it required complex problem solving. 
