@@ -1,0 +1,213 @@
+$main-font: 'Ubuntu', sans-serif;
+$list-font: 'Mansalva', cursive;
+
+$yellow: #f4e02e;
+$green: #5ccc30;
+$darkGreen: #2ba84a;
+$darker: #279642;
+$black: #020202;
+$white: #f7fff2;
+
+.visuallyhidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+html {
+    font-size: 125%;
+    line-height: 1.5;
+}
+
+header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 3rem;
+    // background: $darker;
+
+    h1 {
+        font-family: $main-font;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        // color: white;
+    }
+
+}
+
+.flex-dash {
+    display: flex;
+}
+
+.sidebar {
+    background: $darker;
+    width: 30%;
+
+    form {
+        width: 75%;
+        margin: 50px auto 0;
+        
+
+        input {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 8px solid $yellow;
+            color: white;
+            font-family: $main-font;
+            font-weight: 700;
+            padding: 10px;
+            margin-bottom: 20px;   
+        }
+
+        button {
+            display: block;
+            width: 60%;
+            margin: 0 auto 50px;
+            padding: 10px 0;
+
+        }
+    }
+
+    button {
+        width: 100%;
+        margin: 20px 0 0;
+        padding: 15px;
+        background: $yellow;
+        color: $black;
+        border: none;
+        box-shadow: 5px 5px $green;
+        font-family: $list-font;
+    }
+
+    .find {
+        width: 75%;
+        margin: 30px auto 0;
+    }
+
+    .storedRecipes {
+        width: 90%;
+        margin: 0 auto;
+        
+
+        p {
+            color: white;
+            font-family: $list-font;
+            font-size: 1.5rem;
+        }
+
+        .showRecipes {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+
+            .chosenRecipes {
+                background: $yellow;
+                position: relative;
+                padding: 10px;
+
+                h3 {
+                   color: $black;
+                   text-decoration: none;
+                    font-family: $list-font;
+                    font-size: 0.8rem; 
+                    text-align: center;
+                }
+    
+                img {
+                    width: 100%;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                button {
+                    width: 15%;
+                    height: 15%;
+                    font-size: 2.5rem;
+                    position: absolute;
+                    top: -40%;
+                    left: 80%;
+                    box-shadow: none;
+                    background: transparent;
+                    z-index: 10;
+                    // padding: 5px 10px;
+                    // border-radius: 50%;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+
+                }
+            }
+        }
+
+
+    }
+}
+
+.main {
+    width: 75%;
+    margin-left: 30px;
+
+    .stepTwo {
+        display: flex;
+    }
+
+    .ingredientsContainer {
+        width: 60%;
+        .ingredients {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            list-style: none;
+            width: 90%;
+
+            h3 {
+                font-family: $main-font;
+            }
+            
+            li {
+                button {
+                    background: none;
+                    border: none;
+                    border-bottom: 2px solid $yellow;
+                    font-family: $list-font;
+
+                    &:hover {
+                        border-bottom: 2px solid $green;
+                    }
+                }
+
+            }
+        }
+    }
+    
+    .basket {
+        width: 45%;
+
+        .addedIngredientContainer {
+            list-style: none;
+            width: 100%;
+            li {
+                border-bottom: 2px solid $yellow;
+                font-family: $list-font;
+                width: 60%;
+            }
+        }
+    }
+
+    .stepThree {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+}

@@ -1,17 +1,18 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyB_idoH9ePbYSxRm1wO2tP9FxWnnqJvGac",
-    authDomain: "whats-for-dinner-2.firebaseapp.com",
-    databaseURL: "https://whats-for-dinner-2.firebaseio.com",
-    projectId: "whats-for-dinner-2",
+ // Your web app's Firebase configuration
+ const firebaseConfig = {
+    apiKey: "AIzaSyCVuqwXZYioABjWrZjyJozN_sBlIVPIRP0",
+    authDomain: "dinner-party-54c21.firebaseapp.com",
+    databaseURL: "https://dinner-party-54c21.firebaseio.com",
+    projectId: "dinner-party-54c21",
     storageBucket: "",
-    messagingSenderId: "591704015009",
-    appId: "1:591704015009:web:63e12ead190dbdc476b0e0"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+    messagingSenderId: "820179715918",
+    appId: "1:820179715918:web:54d886a950d317bebdc01f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
 
 export default firebase;

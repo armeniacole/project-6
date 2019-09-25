@@ -273,183 +273,200 @@ class EventPage extends Component {
     return (
       <div className="dashBoard">
         <header className="dash">
-          <div className="mainHeader">
-            <h1>What's For Dinner?</h1>
-            <nav>
-              <Link to="/">Home</Link>
-            </nav>
-          </div>
+          <h1>SplitLuck</h1>
           <h2>{this.state.event[0]}'s dinner party</h2>
+          <nav>
+            <Link to="/">Home</Link>
+          </nav>
         </header>
 
-        <div className="stepOne">
-          <div className="rightSideContainer">
-            <form onSubmit={this.addGuest} action="">
-              <label htmlFor="addGuest" className="labelBorder">Add A Guest:</label>
-              {/* Below input adds guest to guest array on event object in Firebase. */}
-                <input
-                  onChange={this.getNewGuest}
-                  name="newGuest"
-                  placeholder="Enter guest name"
-                  value={this.state.newGuest}
-                  type="text"
-                  id="addGuest"
-                />
-                <label className="visuallyHidden" htmlFor="clickToSubmitGuest"></label>
-                <button disabled={!isEnabled} id="clickToSubmitGuest">
-                  Add guest
-                </button>
-            </form>
+        <div className="flex-dash">
+          <div className="sidebar">
+            {/* Below link takes user to page where they select recipes */}
+            {/* <p>Add A Recipe:</p> */}
+            <div className="find">
+              <Link to={`/recipegrid/${this.props.match.params.partyName}`}>
+                <button>Find Recipes</button>
+              </Link>
             </div>
 
-          <div className="leftSideContainer">
-            {/* Below link takes user to page where they select recipes */}
-            <p>Add A Recipe:</p>
-            <Link to={`/recipegrid/${this.props.match.params.partyName}`}><button>Find Recipes</button>
-            </Link>
+            <form onSubmit={this.addGuest} action="">
+              <label htmlFor="addGuest" className="labelBorder visuallyHidden">
+                Add A Guest:
+              </label>
+              {/* Below input adds guest to guest array on event object in Firebase. */}
+              <input
+                onChange={this.getNewGuest}
+                name="newGuest"
+                placeholder="Enter guest name"
+                value={this.state.newGuest}
+                type="text"
+                id="addGuest"
+              />
+              <label
+                className="visuallyHidden"
+                htmlFor="clickToSubmitGuest"
+              ></label>
+              <button disabled={!isEnabled} id="clickToSubmitGuest">
+                Add guest
+              </button>
+            </form>
+  
+  
+            {/* Maps chosen recipe details to page as a link to the full recipe */}
+            <section className="storedRecipes">
+                    <p>Your recipes:</p>
+                
+                  <div className="showRecipes">
+                    {this.state.recipes
+                      ? this.state.recipes.map((recipe, recipeIndex) => {
+                          return (
+                            <div className="chosenRecipes">
+                              <Link
+                                key={recipeIndex}
+                                to={`/fullrecipe/${recipe.recipe.idMeal}/${this.props.match.params.partyName}`}
+                                className="imageLink"
+                              >
+                                <img
+                                  src={recipe.recipe.strMealThumb}
+                                  alt={recipe.recipe.strMeal}
+                                  />
+                                {/* <h3>{recipe.recipe.strMeal}</h3> */}
+                              </Link>
+                              <button
+                                onClick={event => {
+                                  this.deleteMeal(event, recipe.recipe.strMeal);
+                                }}
+                                id={recipe.recipe.idMeal}
+                              >
+                                &times;
+                              </button>
+                            </div>
+                          );
+                        })
+                      : null}
+                  </div>
+            
+            </section>
           </div>
-          </div>
-
-
-        {/* Maps chosen recipe details to page as a link to the full recipe */}
-        <section className="storedRecipes">
-          <div className="backgroundContainer">
-            <div className="recipesContainer">
-              <div className="yourRecipes">
-                <p>Your recipes:</p>
-              </div>
-              {this.state.recipes
-              ? this.state.recipes.map((recipe, recipeIndex) => {
-                  return (
-                    <div className="chosenRecipes">
-                      <Link
-                        key={recipeIndex}
-                        to={`/fullrecipe/${recipe.recipe.idMeal}/${this.props.match.params.partyName}`}
-                        className="imageLink">
-                        <h3>{recipe.recipe.strMeal}</h3>
-                        <img
-                          src={recipe.recipe.strMealThumb}
-                          alt={recipe.recipe.strMeal}
-                        />
-                      </Link>
-                      <button
-                        onClick={(event) => {this.deleteMeal(event, recipe.recipe.strMeal)}}
-                        id={recipe.recipe.idMeal}
-                      >
-                        remove
-                      </button>
-                    </div>
-                  )
-                }
-                ) : null
-              }
-                </div>
-              </div>
-        </section>
-        <div className="stepTwo">
-          {/* Maps the master ingredient list to the page */}
-          <section className="ingredientsContainer">
-          <h3 className="stepTwoHeader">Your Ingredients List</h3>
-            <ul className="ingredients">
-              {this.state.recipes
-                ? this.state.remainingIngredients.map((ingredient, index) => {
-                    return (
-                      <li key={index} className="buttonContainer">
-                        <button
-                          name={index}
-                          onClick={this.selectIngredient}
-                        //   should the value be the whole object?
-                          value={ingredient.item}
-                          id={ingredient.recipeNumber}
-                        >
-                          {ingredient.item}
-                        </button>
-                      </li>
-                    );
-                  })
-                : console.log("fail")}
-            </ul>
-          </section>
-
-          <section className="basket">
-            {/* form for the "cart" so users can add ingredients to their lists */}
-            <h3 className="stepTwoHeader">Who's bringing what?</h3>
-            <form action="">
-              <label class="visuallyHidden">Please Select a Guest To Add Ingredients To Their Cart</label>
-              <select onChange={this.currentGuest} name="" id="">
-                {/* map users and save the value of the index number */}
-                <option value="">Guest Name</option>
+  
+          <div className="main">
+            <div className="stepTwo">
+              {/* Maps the master ingredient list to the page */}
+              <section className="ingredientsContainer">
+                <h3 className="stepTwoHeader">Your Ingredients List</h3>
+                <ul className="ingredients">
+                  {this.state.recipes
+                    ? this.state.remainingIngredients.map((ingredient, index) => {
+                        return (
+                          <li key={index} className="buttonContainer">
+                            <button
+                              name={index}
+                              onClick={this.selectIngredient}
+                              //   should the value be the whole object?
+                              value={ingredient.item}
+                              id={ingredient.recipeNumber}
+                            >
+                              {ingredient.item}
+                            </button>
+                          </li>
+                        );
+                      })
+                    : console.log("fail")}
+                </ul>
+              </section>
+    
+              <section className="basket">
+                {/* form for the "cart" so users can add ingredients to their lists */}
+                <h3 className="stepTwoHeader">Who's bringing what?</h3>
+                <form action="">
+                  <label class="visuallyHidden">
+                    Please Select a Guest To Add Ingredients To Their Cart
+                  </label>
+                  <select onChange={this.currentGuest} name="" id="">
+                    {/* map users and save the value of the index number */}
+                    <option value="">Guest Name</option>
+                    {this.state.guestList
+                      ? this.state.guestList.map((guest, guestIndex) => {
+                          return (
+                            <option name="currentGuest" value={guestIndex}>
+                              {guest.name}
+                            </option>
+                          );
+                        })
+                      : console.log("fail")}
+                  </select>
+                  <div>
+                    {/* display what is in their "cart"*/}
+                    <ul className="addedIngredientContainer">
+                      {this.state.currentIngredients
+                        ? this.state.currentIngredients.map(
+                            (ingredient, ingredientIndex) => {
+                              return (
+                                <div>
+                                  <li key={ingredientIndex}>
+                                    {ingredient.item}
+                                    <button
+                                      name={ingredientIndex}
+                                      value={ingredient.item}
+                                      id={ingredient.recipeNumber}
+                                      onClick={this.removeFromCart}
+                                      className="removeButtonStyle"
+                                    >
+                                      {/* &#215; */}X
+                                    </button>
+                                  </li>
+                                </div>
+                              );
+                            }
+                          )
+                        : console.log("fail")}
+                    </ul>
+                  </div>
+                  {/* button pushes to firebase */}
+                  <button disabled={!cartIsEnabled} onClick={this.addIngredient}>
+                    Save
+                  </button>
+                  {!cartIsEnabled ? (
+                    <p className="instructionsMessage">
+                      Select a guest and pick the ingredients they should bring.
+                    </p>
+                  ) : (
+                    <p className="instructionsMessage">
+                      Click on items from your ingredients list to add them to this
+                      guests's cart
+                    </p>
+                  )}
+                  {/* <i class="fas fa-shopping-cart"></i> */}
+                </form>
+              </section>
+            </div>
+    
+            <section className="guests">
+              <p className="whatsInYourBasket">What's in your basket?</p>
+              <div className="stepThree">
                 {this.state.guestList
                   ? this.state.guestList.map((guest, guestIndex) => {
                       return (
-                        <option name="currentGuest" value={guestIndex}>
-                          {guest.name}
-                        </option>
+                        <div className="guestIngredientContainer">
+                          <h3 key={guestIndex}>{guest.name}</h3>
+                          <ul>
+                            {guest.ingredients
+                              ? guest.ingredients.map((ingredient, index) => {
+                                  return <li key={index}> {ingredient.item}</li>;
+                                })
+                              : console.log("fail")}
+                          </ul>
+                        </div>
                       );
                     })
                   : console.log("fail")}
-              </select>
-              <div>
-                {/* display what is in their "cart"*/}
-                <ul className="addedIngredientContainer">
-                  {this.state.currentIngredients
-                    ? this.state.currentIngredients.map(
-                        (ingredient, ingredientIndex) => {
-                          return (
-                            <div>
-                              <li key={ingredientIndex}>{ingredient.item}
-                              <button
-                                name={ingredientIndex}
-                                value={ingredient.item}
-                                id={ingredient.recipeNumber}
-                                onClick={this.removeFromCart}
-                                className="removeButtonStyle"
-                              >
-                                {/* &#215; */}
-                                X
-                              </button>
-                              </li>
-                            </div>
-                          );
-                        }
-                      )
-                    : console.log("fail")}
-                </ul>
               </div>
-              {/* button pushes to firebase */}
-              <button disabled={!cartIsEnabled} onClick={this.addIngredient}>
-                Save
-              </button>
-              {!cartIsEnabled ?
-                <p className="instructionsMessage">
-                  Select a guest and pick the ingredients they should bring. 
-                </p> : <p className="instructionsMessage">Click on items from your ingredients list to add them to this guests's cart</p>}
-              <i class="fas fa-shopping-cart"></i>
-            </form>
-          </section>
+            </section>
+          </div>
         </div>
 
-        <section className="guests">
-          <p className="whatsInYourBasket">What's in your basket?</p>
-          <div className="stepThree">
-            {this.state.guestList
-              ? this.state.guestList.map((guest, guestIndex) => {
-                  return (
-                    <div className="guestIngredientContainer">
-                      <h3 key={guestIndex}>{guest.name}</h3>
-                      <ul>
-                        {guest.ingredients
-                          ? guest.ingredients.map((ingredient, index) => {
-                              return <li key={index}> {ingredient.item}</li>;
-                            })
-                          : console.log("fail")}
-                      </ul>
-                    </div>
-                  );
-                })
-              : console.log("fail")}
-          </div>
-        </section>
+
         <footer>
           <p> © 2019 What's for dinner? </p>
         </footer>
