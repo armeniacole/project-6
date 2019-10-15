@@ -43,6 +43,7 @@ class App extends Component {
   // this function runs on Submit
   createEvent = () => {
     // event.preventDefault();
+    // console.log("is it working?")
 
     if(this.state.createEvent !== "") {
     // taking the events array in state and copying it

@@ -1,5 +1,5 @@
 $main-font: 'Ubuntu', sans-serif;
-$list-font: 'Mansalva', cursive;
+$list-font: 'Neucha', cursive;
 
 $yellow: #f4e02e;
 $green: #5ccc30;
@@ -7,6 +7,7 @@ $darkGreen: #2ba84a;
 $darker: #279642;
 $black: #020202;
 $white: #f7fff2;
+$delete: #ff8928;
 
 .visuallyhidden:not(:focus):not(:active) {
   position: absolute;
@@ -26,7 +27,7 @@ html {
     line-height: 1.5;
 }
 
-header {
+.dash {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -50,6 +51,15 @@ header {
 .sidebar {
     background: $darker;
     width: 30%;
+    height: calc(100vh - 3rem);
+
+    h3 {
+        color: white;
+        width: 75%;
+        margin: 20px auto 0;
+        font-family: $list-font;
+        font-size: 1.5rem;
+    }
 
     form {
         width: 75%;
@@ -91,11 +101,13 @@ header {
 
     .find {
         width: 75%;
-        margin: 30px auto 0;
+        margin: 0 auto;
     }
 
     .storedRecipes {
-        width: 90%;
+        width: 85%;
+        height: 50vh;
+        overflow-y: auto;
         margin: 0 auto;
         
 
@@ -110,7 +122,7 @@ header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
-
+            
             .chosenRecipes {
                 background: $yellow;
                 position: relative;
@@ -157,7 +169,8 @@ header {
 
 .main {
     width: 75%;
-    margin-left: 30px;
+    height: calc(100vh - 3rem);
+    // margin-left: 30px;
 
     .stepTwo {
         display: flex;
@@ -165,11 +178,17 @@ header {
 
     .ingredientsContainer {
         width: 60%;
+        margin-left: 30px;
+        // height: 50vh;
+        // overflow-y: auto;
         .ingredients {
             display: grid;
             grid-template-columns: 1fr 1fr;
             list-style: none;
-            width: 90%;
+            width: 100%;
+            height: 30vh;
+            overflow-y: auto;
+            padding-left: 0px;
 
             h3 {
                 font-family: $main-font;
@@ -181,6 +200,7 @@ header {
                     border: none;
                     border-bottom: 2px solid $yellow;
                     font-family: $list-font;
+                    font-size: 1.1rem;
 
                     &:hover {
                         border-bottom: 2px solid $green;
@@ -192,22 +212,129 @@ header {
     }
     
     .basket {
-        width: 45%;
+        width: 40%;
+        margin-right: 70px;
+
+        form {
+            width: 100%;
+
+            select {
+                display: block;
+                margin: 0 auto;
+                border: none;
+                border-bottom: 5px solid $yellow;
+                width: 70%;
+                padding: 10px;
+                // color: $text;
+                padding-left: 15px;
+
+                -webkit-border-radius: 0px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                -o-appearance: none;
+                appearance: none;
+            }
+
+            .select-container {
+                position: relative;
+            }
+
+            .select-arrow {
+                // color: $text;
+                top: 8px;
+                right: 80px;
+                padding-right: 5px;
+                font-size: 1.3rem;
+                position:absolute;
+                display:block;
+                z-index: 5;
+                margin: 0;
+                pointer-events:none;
+            }
+        }
 
         .addedIngredientContainer {
             list-style: none;
             width: 100%;
+            padding: 0;
+            height: 20vh;
+            overflow-y: auto;
             li {
                 border-bottom: 2px solid $yellow;
                 font-family: $list-font;
-                width: 60%;
+                width: 85%;
+                display: flex;
+                justify-content: space-between;
+                margin: 0 auto;
+
+                p {
+                    margin: 0;
+                    font-size: 1.1rem;
+                }
+
+                button {
+                    font-family: $list-font;
+                    background: $delete;
+                    border: none;
+                    margin: 3px;
+                }
             }
+        }
+
+        .save {
+            background: $yellow;
+            border: none;
+            font-family: $list-font;
+            font-size: 1.1rem;
+            padding: 5px 0px;
+            color: $black;
+            width: 40%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            width: 90%;
+            margin: 0 auto 20px;
         }
     }
 
+    .guests {
+        h4 {
+            margin-left: 50px;
+        }
+    }
     .stepThree {
-        display: flex;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 2%;
+        width: 90%;
+        height: 30vh;
+        overflow-y: auto;
+        margin: 0 auto;
         justify-content: space-evenly;
+        
+        .guestIngredientContainer {
+            // border: 2px solid $yellow;
+
+            h3 {
+                text-align: center;
+                width: 90%;
+                margin: 0 auto;
+                border-bottom: 5px solid $yellow;
+            }
+
+            ul {
+                list-style: none;
+                padding: 10px;
+                font-family: $list-font;
+                li {
+                    border-bottom: 2px solid $yellow;
+    
+                }
+            }
+
+        }
     }
 }

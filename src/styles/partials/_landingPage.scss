@@ -102,41 +102,41 @@
             width: 100%;
         }
     }
+    // button styling here
+    button,
+    .skipToEvents {
+        width: 170px;
+        height: 60px;
+        font-family: $body;
+        font-weight: 600;
+        background: $yellow;
+        text-transform: uppercase;
+        border: none;
+        box-shadow: 1px 1px 2px $black;
+        position: relative;
+        &:focus {
+            border: dotted 3px $black;
+        }
+        &:active {
+            box-shadow: none;
+            top: 2px;
+        }
+        @include mq-500 {
+            width: 30%;
+        }
+    }
+    
+    
+    
+    button.submit {
+        margin-right: 5px;
+        @include mq-980 {
+            flex: 1 1 50%;
+            margin-top: 10px;
+        }
+    }
 }
 
-// button styling here
-button,
-.skipToEvents {
-    width: 170px;
-    height: 60px;
-    font-family: $body;
-    font-weight: 600;
-    background: $yellow;
-    text-transform: uppercase;
-    border: none;
-    box-shadow: 1px 1px 2px $black;
-    position: relative;
-    &:focus {
-        border: dotted 3px $black;
-    }
-    &:active {
-        box-shadow: none;
-        top: 2px;
-    }
-    @include mq-500 {
-        width: 30%;
-    }
-}
-
-
-
-button.submit {
-    margin-right: 5px;
-    @include mq-980 {
-        flex: 1 1 50%;
-        margin-top: 10px;
-    }
-}
 
 .skipToEvents {
     text-align: center;
