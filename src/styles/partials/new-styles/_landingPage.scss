@@ -14,6 +14,29 @@
         font-weight: 700;
         padding: 120px 30px 60px;
     }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        ul {
+            display: flex;
+            list-style: none;
+            padding: none;
+            margin: 0;
+            padding-right: 30px;
+            
+            li {
+                font-size: 1.3rem;
+                padding: 0 10px;
+
+                a {
+                    color: black;
+                }
+            }
+        }
+    }
 }
 
 .start {

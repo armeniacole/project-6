@@ -6,6 +6,10 @@ import RecipeGrid from './components/RecipeGrid';
 import FullRecipe from './components/FullRecipe';
 import firebase from './firebase';
 import './styles/App.scss';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+
+library.add(fab);
 
 class App extends Component {
   constructor() {
@@ -13,7 +17,9 @@ class App extends Component {
     this.state = ({
         events:[],
         createEvent: "",
-        errorMessage:""
+        errorMessage:"",
+        goToDash: false,
+        newEvent: "",
     })
 
   }
@@ -55,7 +61,9 @@ class App extends Component {
       // updating the state of events to the new version of the array
       this.setState(
         {
-          events: copyOfEvents
+          events: copyOfEvents,
+          goToDash: true,
+          newEvent: this.state.createEventName,
         },
         () => {
           // sending new event object to firebase - asynchronous callback
@@ -83,7 +91,7 @@ class App extends Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
-          <Route exact path="/" render={() =>{return <LandingPage event={this.state.events} getEventName={this.getEventName} createEvent={this.createEvent} errorMessage={this.state.errorMessage} errorMessage2={this.state.errorMessage2} createEventName={this.state.createEvent} 
+          <Route exact path="/" render={() =>{return <LandingPage event={this.state.events} getEventName={this.getEventName} createEvent={this.createEvent} errorMessage={this.state.errorMessage} errorMessage2={this.state.errorMessage2} createEventName={this.state.createEvent} goToDash={this.state.goToDash} newEvent={this.state.newEvent}
           />}}/>
           {/* <Route path="/contact" render={() =>{return <Contact name="colin" />}}/> */}
           {/* the colon below tells router to expect a parameter. This value is going to be passed in later. */}

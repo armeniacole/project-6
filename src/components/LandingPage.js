@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
 import CreateNew from './CreateNew';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 import {Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 class LandingPage extends Component {
@@ -54,10 +53,33 @@ class LandingPage extends Component {
   }
 
   render() {
+    if(this.props.goToDash === true && this.props.newEvent.length > 0) {
+      return <Redirect to={`/dashboard/${this.props.newEvent}`} />
+    }
+
     return (
       <div className="landingPage">
         <header className="landingHeader">
           <h1>Splitluck</h1>
+          <div>
+            <ul>
+              <li>
+                <a href="">
+                  <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <FontAwesomeIcon icon={["fab", "facebook-square"]} />
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <FontAwesomeIcon icon={["fab", "instagram"]} />
+                </a>
+              </li>
+            </ul>
+          </div>
         </header>
         <section className="start">
           <div className="wrapper startContainer">
@@ -105,9 +127,9 @@ class LandingPage extends Component {
                   <button onClick={this.toggleHidden.bind(this)}>Create</button>
                 </div>
                 <div>
-                    <button className="skipToEvents" onClick={this.moveToSection}>
-                      Find
-                    </button>
+                  <button className="skipToEvents" onClick={this.moveToSection}>
+                    Find
+                  </button>
                 </div>
               </div>
             </div>
@@ -125,7 +147,7 @@ class LandingPage extends Component {
               {this.props.event
                 ? this.props.event.map((userEvents, eventIndex) => {
                     return (
-                      // console.log(userEvents.eventName)
+                      
                       <Link
                         key={eventIndex}
                         to={`/dashboard/${userEvents.eventName}`}
