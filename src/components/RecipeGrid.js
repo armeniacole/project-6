@@ -50,52 +50,58 @@ class RecipeGrid extends Component {
       <div className="findARecipe">
         <header>
           <div className="mainHeader">
-            <h1>What's For Dinner?</h1>
+            <h1>Splitluck</h1>
             <nav>
-              <Link to='/' className='link'>
+              <Link to="/" className="link">
                 Home
               </Link>
-              <Link 
-              to={`/dashboard/${this.props.match.params.partyName}`}
-              className='link'>
-              Event Dashboard
+              <Link
+                to={`/dashboard/${this.props.match.params.partyName}`}
+                className="link"
+              >
+                Event Dashboard
               </Link>
             </nav>
-            <h2>Find a Recipe</h2>
           </div>
+          <h2>Find a Recipe</h2>
         </header>
-        <form action=''>
-          <div className='box'>
-            <select onChange={this.updateUserCategory} name='' id=''>
-              <option value='Beef'>Beef</option>
-              <option value='Chicken'>Chicken</option>
-              <option value='Dessert'>Dessert</option>
-              <option value='Lamb'>Lamb</option>
-              <option value='Pasta'>Pasta</option>
-              <option value='Pork'>Pork</option>
-              <option value='Seafood'>Seafood</option>
-              <option value='Side'>Side</option>
-              <option value='Starter'>Starter</option>
-              <option value='Vegan'>Vegan</option>
-              <option value='Vegetarian'>Vegetarian</option>
-              <option value='Miscellaneous'>Miscellaneous</option>
+        <form action="">
+          <div className="box">
+            <select onChange={this.updateUserCategory} name="" id="">
+              <option value="select">Select</option>
+              <option value="Beef">Beef</option>
+              <option value="Chicken">Chicken</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Lamb">Lamb</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Pork">Pork</option>
+              <option value="Seafood">Seafood</option>
+              <option value="Side">Side</option>
+              <option value="Starter">Starter</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Miscellaneous">Miscellaneous</option>
             </select>
           </div>
-          <p className='instructions'>
+          <p className="instructions">
             Select a category from the drop down menu then press a recipe!
           </p>
         </form>
         <div>
-          <ul className='recipePreviews'>
+          <ul className="recipePreviews">
             {this.state.userRecipes.map((recipe, i) => {
               return (
                 <li id={recipe.idMeal}>
                   <Link
-                    to={`/fullrecipe/${recipe.idMeal}/${this.props.match.params.partyName}`}>
-                    <div className="recipeHeaderContainer">
+                    to={`/fullrecipe/${recipe.idMeal}/${this.props.match.params.partyName}`}
+                  >
+                    <div className="recipeNameContainer">
                       <h2>{recipe.strMeal}</h2>
                     </div>
-                    <img src={recipe.strMealThumb} alt={`An image of ${recipe.strMeal}.` }/>
+                    <img
+                      src={recipe.strMealThumb}
+                      alt={`An image of ${recipe.strMeal}.`}
+                    />
                   </Link>
                 </li>
               );

@@ -53,8 +53,8 @@ class LandingPage extends Component {
   }
 
   render() {
-    if(this.props.goToDash === true && this.props.newEvent.length > 0) {
-      return <Redirect to={`/dashboard/${this.props.newEvent}`} />
+    if(this.props.goToDash === true) {
+      return <Redirect to={`/dashboard/${this.props.createEventName}`} />
     }
 
     return (
@@ -89,26 +89,7 @@ class LandingPage extends Component {
                 <span className="redText">Dinner Parties</span>
               </h2>
             </div>
-            {/* <div className="startForm">
-                            <form  
-                            onSubmit={this.checkName}
-                            action=""> 
-                                {this.props.errorMessage !=='' ? <p>{this.props.errorMessage}</p> : null}
-                                <input onChange={this.props.getEventName} name="createEvent" className="createEvent" type="text" placeholder="enter the organizer's name"/>
-                                <label htmlFor="createEvent" className="visuallyHidden">Enter your group name</label>
-                                <div className="buttons">
-                                    <button className="submit">
-                                        Submit
-                                    </button>      
-                                    <p>or</p>
-                                    <div className="skipToEvents"
-                                    onClick={this.moveToSection}>
-                                        <p>Find</p>
-                                    </div>
-                                </div>
-                            </form>
-                            {this.state.userIsDuplicate ? <p>User already exists</p> : null}
-                        </div> */}
+           
             <div>
               <div className="startForm">
                 <div>
@@ -139,7 +120,7 @@ class LandingPage extends Component {
           <div className="wrapper">
             <div>
               <h2>Events</h2>
-              <h3>Click on event to view dinner party</h3>
+              <p>Click on event to view dinner party</p>
             </div>
             <ul>
               {/* map through this.state.events and return events to page as <li> elements in <Link>s. */}

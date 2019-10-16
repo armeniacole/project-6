@@ -19,7 +19,7 @@ class App extends Component {
         createEvent: "",
         errorMessage:"",
         goToDash: false,
-        newEvent: "",
+        // newEvent: "",
     })
 
   }
@@ -63,7 +63,7 @@ class App extends Component {
         {
           events: copyOfEvents,
           goToDash: true,
-          newEvent: this.state.createEventName,
+          // newEvent: this.state.createEventName,
         },
         () => {
           // sending new event object to firebase - asynchronous callback
